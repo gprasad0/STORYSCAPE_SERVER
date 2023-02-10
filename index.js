@@ -1,17 +1,20 @@
-require('dotenv').config();
-
-const express = require('express');
+// require('dotenv').config();
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import router from "./app/routes/routes.js";
+dotenv.config()
 const app = express();
-const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
-const routes = require('./app/routes/routes');
-const cors = require('cors');
+// const routes = require('./app/routes/routes');
+// const cors = require('cors');
 
 app.use(cors({
     origin: '*'
 }));
 
-app.use('/api', routes)
+app.use('/api', router)
 
 
 mongoose.connect(mongoString);
