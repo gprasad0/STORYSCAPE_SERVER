@@ -7,6 +7,7 @@ import router from "./app/routes/auth.js";
 import cookieSession from "cookie-session";
 import passport from "passport";
 import PassportSetup from "./passport.js";
+
 dotenv.config()
 const app = express();
 const mongoString = process.env.DATABASE_URL;
