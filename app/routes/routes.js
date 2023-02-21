@@ -1,11 +1,11 @@
-import {sampleController, samplePostController} from "../controllers/sampleController.js";
-import express from "express";
-import { composeDataController } from "../controllers/composeDataController.js";
-// const express = require('express');
+// // import {sampleController, samplePostController} from "../controllers/sampleController.js";
+// import express from "express";
+// import { composeDataController } from "../controllers/composeDataController.js";
+// // const express = require('express');
 
-const router = express.Router();
+// const router = express.Router();
 
-// router.get('/getAll', sampleController);
-router.post('/storyscape/compose', composeDataController)
+// // router.get('/getAll', sampleController);
+// router.post('/storyscape/compose', composeDataController)
 
-export default router;
+// module.exports = router

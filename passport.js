@@ -1,8 +1,8 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+// import { createRequire } from 'module';
+// const require = createRequire(import.meta.url);
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-import passport from "passport";
-import dotenv from "dotenv";
+const passport = require("passport");
+const dotenv = require('dotenv')
 dotenv.config()
 // import GoogleStrategy from "passport-google-oauth20";
 console.log("process.env.GOOGLE_CLIENT_ID====>",process.env.GOOGLE_CLIENT_ID)
@@ -14,8 +14,10 @@ passport.use(
             callbackURL:"/auth/google/callback",
             scope:["profile","email"]
         },
-        function (accessToken,refreshToken,profile,callback){
-            callback(null,profile)
+        function (accessToken,refreshToken,profile,done){
+            done(null, profile);
+            // callback(null,profile)
+
         }
     )
 )
@@ -28,5 +30,5 @@ passport.deserializeUser((user,done)=>{
     done(null,user)
 })
 
-const PassportSetup = passport
-export default PassportSetup;
+// const PassportSetup = passport
+// export default PassportSetup;

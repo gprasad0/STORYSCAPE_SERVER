@@ -1,5 +1,5 @@
-import express from 'express';
-import passport from 'passport';
+const express = require("express");
+const passport = require("passport");
 
 const router = express.Router();
 
@@ -8,7 +8,9 @@ router.get("/login/success",(req,res)=>{
         res.status(200).json({
             error:false,
             message:"Successfuly Logged In",
-            use:req.user
+            use:req.user,
+            // cookies : req.cookies,
+// jwt 
         })
     }else{
         res.status(403).json({
@@ -24,19 +26,21 @@ router.get("/login/failed",(req,res)=>{
         message:"Log in Failure"
     })
 })
-router.get(
-  '/google/callback',
-  passport.authenticate('google', {
-    successRedirect: process.env.CLIENT_URL,
-    failureRedirect: '/login/failed',
-  })
-);
- 
-router.get("/google",passport.authenticate("google",["profile","email"])); 
 
+ 
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+router.get(
+    "/google/callback",
+    // (req,res)=>{
+    //     res.json("data ==>")
+    // }
+    passport.authenticate("google", {
+      successRedirect: process.env.CLIENT_URL,
+      failureRedirect: '/login/failed',
+    })
+  );
 router.get("/logout",(req,res)=>{
     req.logOut();
     res.redirect(process.env.CLIENT_URL)
 })
-
-export default router;
+module.exports = router
