@@ -1,6 +1,8 @@
-import axios from 'axios';
-import { TEMPERATURE } from '../helperFunctions/commonConstants.js';
-export const composeDataController = async (req, res) => {
+// import axios from 'axios';
+const axios = require('axios');
+const TEMPERATURE = require("../helperFunctions/commonConstants.js")
+// import { TEMPERATURE } from '../helperFunctions/commonConstants.js';
+ const composeDataController = async (req, res) => {
   let temperature = TEMPERATURE[req.body.temp];
   console.log("dyay==>/////",req.body.temp,TEMPERATURE,temperature)
 
@@ -21,3 +23,6 @@ export const composeDataController = async (req, res) => {
   });
   res.json(data.data.choices);
 };
+
+
+module.exports = composeDataController;

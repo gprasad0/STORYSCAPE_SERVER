@@ -1,5 +1,4 @@
 
-// import mongoose from "mongoose";
 
 // // const passportSetup = require("./passport");
 // import router from "./app/routes/auth.js";
@@ -10,16 +9,19 @@
 const cookieSession = require("cookie-session");
 const express = require("express");
 const cors = require("cors");
+const mongoose =  require("mongoose")
+
 const passportSetup = require("./passport");
 const passport = require("passport");
-const router = require("./app/routes/auth");
+const router = require("./app/routes/mainRouter");
+// const chatgptRouter = require("./app/routes/chatGptRoutes")
 const app = express();
 const dotenv = require('dotenv')
 // import PassportSetup from "./passport.js";
 // const passportSetup = PassportSetup
 dotenv.config()
 // const app = express();
-// const mongoString = process.env.DATABASE_URL;
+const mongoString = process.env.DATABASE_URL;
 
 // const routes = require('./app/routes/routes');
 // const cors = require('cors');
@@ -40,20 +42,20 @@ app.use(cors({
     credentials:true
 }));
 
-// app.use('/api', router)
+// app.use('/api', chatgptRouter)
 
-app.use('/auth', router)
+app.use('/', router)
 
-// mongoose.connect(mongoString);
-// const database = mongoose.connection;
+mongoose.connect(mongoString);
+const database = mongoose.connection;
 
-// database.on('error', (error) => {
-//     console.log(error)
-// })
+database.on('error', (error) => {
+    console.log(error)
+})
 
-// database.once('connected', () => {
-//     console.log('Database Connected');
-// })
+database.once('connected', () => {
+    console.log('Database Connected');
+})
 
 
 app.listen(3000, () => {

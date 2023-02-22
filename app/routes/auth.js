@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
-
+const UserModel = require("../models/user.model");
+const User = require("../models/user.model")
 const router = express.Router();
 
 router.get("/login/success",(req,res)=>{
@@ -42,5 +43,19 @@ router.get(
 router.get("/logout",(req,res)=>{
     req.logOut();
     res.redirect(process.env.CLIENT_URL)
+})
+
+router.post("/signin",async (req,res)=>{
+    try{
+        const user = await UserModel.create({
+            name:"Guru@gnail.com",
+            email:"gur",
+            password:"ded"
+        })
+        res.json("login")
+    }catch(e){
+        res.json("errro")
+
+    }
 })
 module.exports = router
