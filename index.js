@@ -1,10 +1,6 @@
-// require('dotenv').config();
-// import { createRequire } from 'module';
-// const require = createRequire(import.meta.url);
-// import express from "express";
+
 // import mongoose from "mongoose";
-// import dotenv from "dotenv";
-// import cors from "cors";
+
 // // const passportSetup = require("./passport");
 // import router from "./app/routes/auth.js";
 // import cookieSession from "cookie-session";
