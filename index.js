@@ -13,6 +13,7 @@ const mongoose =  require("mongoose")
 
 const passportSetup = require("./passport");
 const passport = require("passport");
+const jwt = require("jsonwebtoken")
 const router = require("./app/routes/mainRouter");
 // const chatgptRouter = require("./app/routes/chatGptRoutes")
 const app = express();

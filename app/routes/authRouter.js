@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require("passport");
+const jwt = require("jsonwebtoken")
 const UserModel = require("../models/user.model");
 const User = require("../models/user.model")
 const router = express.Router();
@@ -45,7 +46,7 @@ router.get("/logout",(req,res)=>{
     res.redirect(process.env.CLIENT_URL)
 })
 
-router.post("/signin",async (req,res)=>{
+router.post("/register",async (req,res)=>{
     try{
         const user = await UserModel.create({
             name:"Guru@gnail.com",
@@ -58,4 +59,26 @@ router.post("/signin",async (req,res)=>{
 
     }
 })
+
+router.post("/login",async (req,res)=>{
+    try{
+        const user = await UserModel.findOne({
+            name:"Guru@gnail.com",
+            email:"gur",
+        })
+        console.log("user===<",user)
+        if(user){
+            const token = jwt.sign({name:"Guru@gnail.com",email:"gur"},process.env.JWT_SECRET_KEY)
+            return res.json({status:'ok',user:token})
+
+        }else{
+            return res.json({status:'error',user:false})
+        }
+    }catch(e){
+        res.json("errro")
+
+    }
+})
+
+
 module.exports = router

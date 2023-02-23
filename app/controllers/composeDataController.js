@@ -3,6 +3,14 @@ const axios = require('axios');
 const TEMPERATURE = require("../helperFunctions/commonConstants.js")
 // import { TEMPERATURE } from '../helperFunctions/commonConstants.js';
  const composeDataController = async (req, res) => {
+
+  // const token = req.headers['x-access-token']
+  // try{
+  //   const decoded = jwt.verify(token,'secretKey')
+  //   const email = decoded.email
+  // }catch(e){
+
+  // }
   let temperature = TEMPERATURE[req.body.temp];
   console.log("dyay==>/////",req.body.temp,TEMPERATURE,temperature)
 
