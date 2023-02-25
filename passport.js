@@ -15,6 +15,7 @@ passport.use(
             scope:["profile","email"]
         },
         function (accessToken,refreshToken,profile,done){
+            console.log("profile==>",profile,accessToken,refreshToken)
             done(null, profile);
             // callback(null,profile)
 
