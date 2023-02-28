@@ -25,12 +25,12 @@ router.get("/login/success",(req,res)=>{
 router.get("/login/failed",(req,res)=>{
     res.status(401).json({
         error:true,
-        message:"Log in Failure"
+        message:"Something went wrong with the authentication. Please revisit the login page"
     })
 })
 
  
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+router.get("/google", passport.authenticate("google", { scope: ["profile","email"] }));
 router.get(
     "/google/callback",
     // (req,res)=>{
@@ -38,7 +38,7 @@ router.get(
     // }
     passport.authenticate("google", {
       successRedirect: process.env.CLIENT_URL,
-      failureRedirect: '/login/failed',
+      failureRedirect: '/auth/login/failed',
     })
   );
 router.get("/logout",(req,res)=>{

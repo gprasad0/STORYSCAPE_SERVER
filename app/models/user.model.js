@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
-
+var ObjectId = require('mongodb').ObjectId;
 const User = new mongoose.Schema(
-  {
+  {id: {
+    type: String,
+    default: ObjectId,
+  },
+    firstName:{type: String, required:true},
+    lastName:{type: String, required:true},
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -13,7 +18,6 @@ const User = new mongoose.Schema(
       type: Date,
       default: new Date(),
     },
-    // name:{type:String,required:true},
   },
   { collection: 'user-data' }
 );

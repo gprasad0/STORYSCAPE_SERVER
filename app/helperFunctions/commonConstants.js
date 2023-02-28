@@ -4,4 +4,8 @@
     "Low":0.2
 }
 
+const differentPrompts = () =>{
+    
+}
+
 module.exports = {TEMPERATURE}
