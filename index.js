@@ -62,3 +62,6 @@ database.once('connected', () => {
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)
 })
+
+//Authorization : Process of verifying what resources a user has access to
+//Authentication :  Process of verifying who someone is  
