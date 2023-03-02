@@ -1,7 +1,7 @@
 var express = require('express');
 var rootRouter = express.Router();
 
-var userLogin = require('./authRouter');
+var userLogin = require('./authRoutes');
 var chatgptData = require('./chatGptRouter');
 
 rootRouter.use('/auth', userLogin);

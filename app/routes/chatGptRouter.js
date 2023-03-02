@@ -5,8 +5,11 @@ const express = require('express');
 const composeDataController = require("../controllers/composeDataController.js")
 
 const router = express.Router();
-
+const verifyJwt = require("../middleware/verifyJWT")
 // router.get('/getAll', sampleController);
+// router.use(verifyJwt)
 router.post('/storyscape/compose', composeDataController)
+
+
 
 module.exports = router

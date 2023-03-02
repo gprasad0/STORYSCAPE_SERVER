@@ -12,7 +12,7 @@ const TEMPERATURE = require("../helperFunctions/commonConstants.js")
 
   // }
   let temperature = TEMPERATURE[req.body.temp];
-  // console.log("dyay==>/////",req.body.temp,TEMPERATURE,temperature)
+  console.log("dyay==>/////",req.body)
 
   let data = await axios({
     method: 'post',
