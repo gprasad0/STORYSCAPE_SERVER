@@ -1,11 +1,6 @@
 
 
-// // const passportSetup = require("./passport");
-// import router from "./app/routes/auth.js";
-// import cookieSession from "cookie-session";
-// import passport from "passport";
-// import passport from "passport";
-// import passPortConfig from "./passport.js";
+
 const cookieSession = require("cookie-session");
 const express = require("express");
 const cors = require("cors");
