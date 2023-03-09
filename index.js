@@ -38,8 +38,9 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 // passPortConfig(passport);
 app.use(cors({
-    origin: '*',
-    credentials:true
+    origin: true,
+    credentials:true,
+    "preflightContinue": false,
 }));
 
 // app.use('/api', chatgptRouter)
