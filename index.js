@@ -21,12 +21,12 @@ const cookieParser = require('cookie-parser')
 dotenv.config()
 // const app = express();
 const mongoString = process.env.DATABASE_URL;
-
+app.use(cookieParser())
 // const routes = require('./app/routes/routes');
 // const cors = require('cors');
 app.use(logger)
 app.use(express.json());
-app.use(cookieParser())
+
 app.use(
     cookieSession({
         name:"session",
