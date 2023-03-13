@@ -24,6 +24,7 @@ const addGoogleUser = async (
     email: email,
     password: password,
     source: source,
+    apiCount: 99
   });
   let data = await  user.save();
   return data
