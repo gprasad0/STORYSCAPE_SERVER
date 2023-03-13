@@ -14,6 +14,7 @@ const User = new mongoose.Schema(
       type: String,
       required: [true, 'source not specified'],
     },
+    apiCount:{type: Number, required:true},
     lastVisited: {
       type: Date,
       default: new Date(),
