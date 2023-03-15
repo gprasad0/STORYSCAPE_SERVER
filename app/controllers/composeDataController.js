@@ -8,18 +8,19 @@ const TEMPERATURE = require("../helperFunctions/commonConstants.js")
 
   try{
     let email = req.email
-   let temperature = TEMPERATURE[req.body.temp];
+  //  let temperature = TEMPERATURE[req.body.temp];
     const foundUser = await User.findOne({ email }).exec()
      
    let userIncrement = await User.findOneAndUpdate({email:email},  { $inc: { apiCount: -1,  }  },{
     new: true
 })
-console.log("userIncrement===>",userIncrement)
 
 if(userIncrement.apiCount > 0){
-let temperature = TEMPERATURE[req.body.temp];
+
+let temperature = req.body.temp ? TEMPERATURE[req.body.temp] : TEMPERATURE["High"];
+console.log("userIncrement===>123",userIncrement,req.body.prompt,req.body.outputs,temperature)
  
-   let data = await axios({
+   let chatgptdata = await axios({
      method: 'post',
      headers: {
        'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ let temperature = TEMPERATURE[req.body.temp];
        prompt: req.body.prompt,
        max_tokens: 90,
        temperature: temperature,
-       n: req.body.outputs,
+       n: req.body.outputs == 0? 1 : req.body.outputs,
      }),
    });
    res.json({status:200,data:chatgptdata.data.choices,token:userIncrement.apiCount});

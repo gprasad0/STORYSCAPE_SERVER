@@ -24,7 +24,7 @@ passport.use(
             const lastName = profile.name.familyName;
             const displayName = profile.displayName
             console.log("ee7788899>>>,",
-            lastName)
+            lastName,accessToken,refreshToken)
             const currentUser = addGoogleUser(
                 id,
                 email,
