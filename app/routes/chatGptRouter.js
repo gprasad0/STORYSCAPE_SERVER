@@ -4,12 +4,14 @@
 const express = require('express');
 const composeDataController = require("../controllers/composeDataController.js")
 const orderProcessController = require("../controllers/paymentGatewayController").orderProcessController
+const paymentProcessController = require("../controllers/paymentGatewayController").paymentProcessController
+
 const router = express.Router();
 const verifyJwt = require("../middleware/verifyJWT")
 // router.get('/getAll', sampleController);
 // router.use(verifyJwt)
 router.post('/storyscape/compose', composeDataController)
 router.post('/makeOrder',orderProcessController)
-
+router.post('/paymentData',paymentProcessController)
 
 module.exports = router

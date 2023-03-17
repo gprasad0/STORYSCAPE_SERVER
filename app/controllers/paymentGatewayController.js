@@ -23,4 +23,9 @@ const orderProcessController = async(req,res) => {
    
 }
 
-module.exports = {orderProcessController};
+const paymentProcessController = async (req,res) =>{
+  console.log("eewewe===>",req.body)
+
+}
+
+module.exports = {orderProcessController,paymentProcessController};
