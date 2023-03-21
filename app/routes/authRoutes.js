@@ -45,7 +45,7 @@ router.post('/signup', async (req, res) => {
 router.route('/login').post(loginLimiter,authController.login)
 router.route('/refresh').get(authController.refresh)
 router.route('/logout').post(authController.logout)
-
+router.route('/googleOauthSuccess').get(authController.googleAuthSuccess)
 //google oauth
 router.route('/google').get(
     passport.authenticate('google', { scope: ['profile', 'email'] })

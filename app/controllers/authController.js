@@ -102,8 +102,14 @@ const logout = (req, res) => {
     res.json({ message: 'Cookie cleared' })
 }
 
+const googleAuthSuccess = (req,res) =>{
+    const cookies = req.cookies
+    console.log("cookies=====?>",cookies)
+}
+
 module.exports = {
     login,
     refresh,
-    logout
+    logout,
+    googleAuthSuccess
 }
