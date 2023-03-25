@@ -7,6 +7,7 @@ const asyncHandler = require('express-async-handler')
 // @route POST /auth
 // @access Public
 const login = asyncHandler(async (req, res) => {
+    console.log("asyncHandler===>",req.user)
     const { email, password } = req.body
 
     if (!email || !password) {
@@ -98,13 +99,16 @@ const refresh = (req, res) => {
 const logout = (req, res) => {
     const cookies = req.cookies
     if (!cookies?.jwt) return res.sendStatus(204) //No content
+    res.clearCookie('session', { httpOnly: true, sameSite: 'None', secure: true })
+
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
     res.json({ message: 'Cookie cleared' })
 }
 
 const googleAuthSuccess = (req,res) =>{
-    const cookies = req.cookies
-    console.log("cookies=====?>",cookies)
+    const cookies = req
+    console.log("reqreq=====?>",cookies,req.user)
+    res.json({googleAuthToken:cookies.session})
 }
 
 module.exports = {

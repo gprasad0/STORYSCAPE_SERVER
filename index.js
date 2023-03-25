@@ -68,3 +68,40 @@ app.listen(3000, () => {
 //JWT token :  Issued after the initaial login authentication takes place. Acces and refresh token is  sent. 
 //access token ->sent as json. Client stores it in state.Do not store in localstorage or cookie and not even in js
 //refresh token - sent as http cookie onlymust have expiry . 
+
+//Oauth process - 
+// Request comes in from the browser/Client for the route /auth/google -> authRoutes.js
+//This will call the passport.authenticate('google', { scope: ['profile', 'email'] }) -> Before even doing this we need to configure passport to handle google or facebook or github oauth strategy
+//This strategy will be done by setting up secret key and id in google,facebook accounts [using scope]
+//This will aallow the broser to open a window to show the gmail accounts for the user to allow authentication
+//Once the user allows the app to use the accounts, a redirect url is called by google that is - /google/callback
+//Google will send a code to this callback url. Using this code , passport will see the code and use it to retrieve some data from google and will return it to our server
+//This will trigger the callback function in the passport.js file.
+// -----> (accessToken,refreshToken,profile,done) => {
+//     console.log("profile==>",profile)
+
+//     const id = profile.id;
+//     const email = profile.emails[0].value;
+//     const firstName = profile.name.givenName;
+//     const lastName = profile.name.familyName;
+//     const displayName = profile.displayName
+//     console.log("ee7788899>>>,",
+//     lastName,accessToken,refreshToken)
+//     const currentUser = addGoogleUser(
+//         id,
+//         email,
+//         firstName,
+//         lastName,
+//         displayName,
+//         "googleUser",
+//         "google"
+//         )
+//     done(null, profile);
+//     // return done(null, false, {
+//     //     message: `You have previously signed up with a different signin method`,
+//     //   });
+//     // callback(null,profile)
+
+// }
+//Here you can save the user if he is a first time login or retrieve the user if he is already a existing user
+//Once this call back function is called, the done paramter will call passport.serializeUser. This basically creates the cookie which will be sent using the params sent through done(null,user.id)
