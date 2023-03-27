@@ -7,15 +7,18 @@ const addGoogleUser = async (
   lastName,
   name,
   password,
-  source,
+  source
 ) => {
-    console.log("efrefff====>", id,
+  console.log(
+    'efrefff====>',
+    id,
     email,
     firstName,
     lastName,
     name,
     password,
-    source,)
+    source
+  );
   const user = new UserModel({
     id: id,
     firstName: firstName,
@@ -24,14 +27,16 @@ const addGoogleUser = async (
     email: email,
     password: password,
     source: source,
-    apiCount: 99
+    apiCount: 99,
   });
-  let data = await  user.save();
-  return data
+  let data = await user.save();
+  return data;
 };
 
-const getUsers = (User) => () => {
-  return User.find({});
+const getUserByOauthId =  async (id) => {
+  const user = await UserModel.find({})
+  console.log("user=====>",user)
+  return user
 };
 
-module.exports = { addGoogleUser, getUsers };
+module.exports = { addGoogleUser, getUserByOauthId };

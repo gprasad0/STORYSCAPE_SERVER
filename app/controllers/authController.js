@@ -103,11 +103,14 @@ const logout = (req, res) => {
 
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
     res.json({ message: 'Cookie cleared' })
+    // req.logout();
+    // res.json({ message: 'Cookie cleared' })
+
 }
 
 const googleAuthSuccess = (req,res) =>{
     const cookies = req
-    console.log("reqreq=====?>",cookies,req.user)
+    console.log("reqreq=====?>??????",req.user)
     res.json({googleAuthToken:cookies.session})
 }
 

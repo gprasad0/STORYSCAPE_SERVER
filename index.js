@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(
     cookieSession({
         name:"session",
-        keys:["cyberwolve"],
+        keys:["storyscape__SERVER__KEY__ENCRYPT"],
         maxAge:24*60*60*100
     })
 )
@@ -105,3 +105,4 @@ app.listen(3000, () => {
 // }
 //Here you can save the user if he is a first time login or retrieve the user if he is already a existing user
 //Once this call back function is called, the done paramter will call passport.serializeUser. This basically creates the cookie which will be sent using the params sent through done(null,user.id)
+//serializeUser is used from the server. deSerializeuser is used when we get the cookies from the browser
