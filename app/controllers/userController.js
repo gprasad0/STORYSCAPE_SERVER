@@ -34,7 +34,7 @@ const addGoogleUser = async (
 };
 
 const getUserByOauthId =  async (id) => {
-  const user = await UserModel.find({})
+  const user = await UserModel.find({id:""})
   console.log("user=====>",user)
   return user
 };
