@@ -73,7 +73,7 @@ app.listen(3000, () => {
 // Request comes in from the browser/Client for the route /auth/google -> authRoutes.js
 //This will call the passport.authenticate('google', { scope: ['profile', 'email'] }) -> Before even doing this we need to configure passport to handle google or facebook or github oauth strategy
 //This strategy will be done by setting up secret key and id in google,facebook accounts [using scope]
-//This will aallow the broser to open a window to show the gmail accounts for the user to allow authentication
+//This will allow the browser to open a window to show the gmail accounts for the user to allow authentication
 //Once the user allows the app to use the accounts, a redirect url is called by google that is - /google/callback
 //Google will send a code to this callback url. Using this code , passport will see the code and use it to retrieve some data from google and will return it to our server
 //This will trigger the callback function in the passport.js file.
@@ -104,5 +104,5 @@ app.listen(3000, () => {
 
 // }
 //Here you can save the user if he is a first time login or retrieve the user if he is already a existing user
-//Once this call back function is called, the done paramter will call passport.serializeUser. This basically creates the cookie which will be sent using the params sent through done(null,user.id)
+//Once this call back function is called, the done parameter will call passport.serializeUser. This basically creates the cookie which will be sent using the params sent through done(null,user.id)
 //serializeUser is used from the server. deSerializeuser is used when we get the cookies from the browser
