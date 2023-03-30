@@ -98,7 +98,7 @@ const refresh = (req, res) => {
 // @access Public - just to clear cookie if exists
 const logout = (req, res) => {
     const cookies = req.cookies
-    if (!cookies?.jwt) return res.sendStatus(204) //No content
+    // if (!cookies?.jwt) return res.sendStatus(204) //No content
     res.clearCookie('session', { httpOnly: true, sameSite: 'None', secure: true })
 
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
@@ -111,7 +111,12 @@ const logout = (req, res) => {
 const googleAuthSuccess = (req,res) =>{
     const cookies = req
     console.log("reqreq=====?>??????",req.user)
-    res.json({googleAuthToken:cookies.session})
+    if(req.user){
+        res.json({googleAuthToken:cookies.session})
+
+    }else{
+        return res.status(401).json({ message: 'Unauthorized' })
+    }
 }
 
 module.exports = {

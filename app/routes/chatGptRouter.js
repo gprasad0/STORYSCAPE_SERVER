@@ -9,7 +9,7 @@ const verifyPaymentController = require("../controllers/paymentGatewayController
 const router = express.Router();
 const verifyJwt = require("../middleware/verifyJWT")
 // router.get('/getAll', sampleController);
-// router.use(verifyJwt)
+router.use(verifyJwt)
 router.post('/storyscape/compose', composeDataController)
 router.post('/makeOrder',orderProcessController)
 router.post('/paymentData',paymentProcessController)

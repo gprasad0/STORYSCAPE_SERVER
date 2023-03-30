@@ -45,10 +45,10 @@ router.get(
     failureRedirect: '/auth/login/failed',
   })
 );
-router.get('/logout', (req, res) => {
-  req.logOut();
-  res.redirect(process.env.CLIENT_URL);
-});
+// router.get('/logout', (req, res) => {
+//   req.logOut();
+//   res.redirect(process.env.CLIENT_URL);
+// });
 
 router.post('/register', async (req, res) => {
   try {
