@@ -3,6 +3,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/user.model');
 const User = require('../models/user.model');
+const { v4: uuidv4 } = require('uuid');
 const { addGoogleUser } = require('../controllers/userController');
 const router = express.Router();
 
@@ -97,7 +98,7 @@ router.post('/signup', async (req, res) => {
     if (user && user.source !== 'google') {
       return res.json({ status: false, message: 'Email already Exists' });
     } else {
-      let id = '';
+      let id = uuidv4();
       let name = `${req.body.firstName} ${req.body.lastName}`;
       const currentUser = await addGoogleUser(
         id,
