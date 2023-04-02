@@ -6,9 +6,10 @@ const orderProcessController = async (req, res) => {
       key_id: process.env.RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_KEY_SECRET,
     });
+    console.log("req.body==>",req.body)
 
     let orderData = await instance.orders.create({
-      amount: 50000,
+      amount: req.body.amount*100,
       currency: 'INR',
       receipt: 'receipt#1',
       notes: {
