@@ -65,7 +65,6 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    console.log("req.body==>",req.body)
   try {
     const user = await UserModel.findOne({
       email: req.body.email,
@@ -89,6 +88,10 @@ router.post('/login', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
   try {
+
+    let id = uuidv4();
+    console.log('efrefff====>===<', id);
+    
     console.log('req--->', req.body);
     const user = await UserModel.findOne({
       email: req.body.email,
@@ -99,18 +102,20 @@ router.post('/signup', async (req, res) => {
       return res.json({ status: false, message: 'Email already Exists' });
     } else {
       let id = uuidv4();
-      let name = `${req.body.firstName} ${req.body.lastName}`;
-      const currentUser = await addGoogleUser(
-        id,
-        req.body.email,
-        req.body.firstName,
-        req.body.lastName,
-        name,
-        req.body.password,
-        'normalLogin'
-      );
+    console.log('efrefff====>===<', id);
 
-      return res.json({ status: true, message: 'Account Created' });
+      // let name = `${req.body.firstName} ${req.body.lastName}`;
+      // const currentUser = await addGoogleUser(
+      //   id,
+      //   req.body.email,
+      //   req.body.firstName,
+      //   req.body.lastName,
+      //   name,
+      //   req.body.password,
+      //   'normalLogin'
+      // );
+
+      // return res.json({ status: true, message: 'Account Created' });
     }
   } catch (e) {
       console.log("errrrr=>",e)

@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const UserModel = require('../models/user.model');
 const { addGoogleUser } = require('../controllers/userController');
-
+const { v4: uuidv4 } = require('uuid');
 const authController = require("../controllers/authController");
 const loginLimiter = require("../middleware/loginLimiter");
 
@@ -11,16 +11,14 @@ const loginLimiter = require("../middleware/loginLimiter");
 //signup
 router.post('/signup', async (req, res) => {
     try {
-      console.log('req--->', req.body);
       const user = await UserModel.findOne({
         email: req.body.email,
       });
-      console.log('user===<', user);
   
       if (user && user.source !== 'google') {
         return res.json({ status: false, message: 'Email already Exists' });
       } else {
-        let id = '';
+        let id = uuidv4();
         let name = `${req.body.firstName} ${req.body.lastName}`;
         const currentUser = await addGoogleUser(
           id,
