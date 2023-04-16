@@ -7,21 +7,21 @@ const TEMPERATURE = require("../helperFunctions/commonConstants.js")
  const composeDataController = async (req, res) => {
 
   try{
-    let user = req.user
+    // let user = req.user
   //  let temperature = TEMPERATURE[req.body.temp];
-    const foundUser = await User.findOne({ id:user }).exec()
-    console.log("email===>req.body",foundUser , req.body)
+    // const foundUser = await User.findOne({ id:user }).exec()
+    // console.log("email===>req.body",foundUser , req.body)
      
-   let userIncrement = await User.findOneAndUpdate({id:103255388566489326133}, { apiCount: { $inc: -1 } })
+  //  let userIncrement = await User.findOneAndUpdate({id:103255388566489326133}, { apiCount: { $inc: -1 } })
 //     await User.findOneAndUpdate({id:user}, { apiCount: req.body.apiCount - 1 },{
 //     new: true
 // })
-console.log("userIncrement==>",userIncrement)
+// console.log("userIncrement==>",userIncrement)
 
-if(userIncrement.apiCount > 0){
+if(true){
 
-let temperature = req.body.temp ? TEMPERATURE[req.body.temp] : TEMPERATURE["High"];
-console.log("userIncrement===>123",userIncrement,req.body.prompt,req.body.outputs,temperature)
+// let temperature = req.body.temp ? TEMPERATURE[req.body.temp] : TEMPERATURE["High"];
+// console.log("userIncrement===>123",userIncrement,req.body.prompt,req.body.outputs,temperature)
  
   //  let chatgptdata = await axios({
   //    method: 'post',
@@ -39,7 +39,7 @@ console.log("userIncrement===>123",userIncrement,req.body.prompt,req.body.output
   //    }),
   //  });
   //  res.json({status:200,data:chatgptdata.data.choices,token:userIncrement.apiCount});
-  // res.json({status:200,message:"Token limit"});
+  res.json({status:200,message:"Token limit"});
 
 }else{
   res.json({status:500,message:"Token limit exceeded"});
