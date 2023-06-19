@@ -16,6 +16,7 @@ const dotenv = require('dotenv')
 const { logger, logEvents } = require('./app/middleware/logger')
 const errorHandler = require('./app/middleware/errorHandler')
 const cookieParser = require('cookie-parser')
+const path = require('path')
 // import PassportSetup from "./passport.js";
 // const passportSetup = PassportSetup
 dotenv.config()
@@ -42,6 +43,25 @@ app.use(cors({
     credentials:true,
     "preflightContinue": false,
 }));
+
+
+const _dirname = path.dirname("")
+const buildPath = path.join(_dirname  , "../CHATGPTAPP/dist");
+
+app.use(express.static(buildPath))
+
+app.get("/*", function(req, res){
+
+    res.sendFile(
+        path.join(__dirname, "../CHATGPTAPP/dist/index.html"),
+        function (err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        }
+      );
+
+})
 
 // app.use('/api', chatgptRouter)
 
